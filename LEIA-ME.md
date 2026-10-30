@@ -6,7 +6,7 @@ O Supabase guarda os cadastros, a senha de cada pessoa e a apresentação proteg
 |---|---|
 | `setup.sql` | Cria as tabelas, as regras de segurança e a pasta privada no Supabase |
 | `public/` | O site: login, cadastro, espera e painel de acessos. É esta pasta que vai para o Netlify |
-| `public/config.js` | Onde você cola o endereço e a chave do Supabase |
+| `public/index.html` | O portal inteiro num arquivo só. No topo dele você cola o endereço e a chave do Supabase |
 | `apresentacao/Intersolid_ERP_Apresentacao_Marca.html` | A apresentação. **Não** vai para o Netlify: você publica pelo portal no primeiro acesso |
 
 ---
@@ -31,7 +31,7 @@ Por quê: o servidor de e-mail que vem com o Supabase só envia mensagens para o
 2. Copie a **Project URL** (algo como `https://abcdxyz.supabase.co`).
 3. Copie a chave **anon** ou **publishable**.
    **Nunca use a chave `service_role` ou `secret`.** Ela dá acesso total ao banco.
-4. Abra `public/config.js` e cole os dois valores no lugar de `COLE_AQUI`.
+4. Abra `public/index.html` e cole os dois valores em `SUPABASE_URL` e `SUPABASE_KEY`, no bloco de configuração do topo do arquivo.
 
 ---
 
@@ -88,7 +88,7 @@ Enquanto isso não for feito, se um vendedor esquecer a senha: exclua a conta de
 
 ## Opcional · Entrar com Google
 
-Exige criar uma credencial no Google Cloud. Se quiser, me chame e eu te guio. Depois de configurado em **Authentication › Sign In / Providers › Google**, troque `ENABLE_GOOGLE = false` para `true` no `config.js` e envie a pasta `public` de novo ao Netlify.
+Exige criar uma credencial no Google Cloud. Se quiser, me chame e eu te guio. Depois de configurado em **Authentication › Sign In / Providers › Google**, troque `ENABLE_GOOGLE: false` para `true` no topo do `index.html` e envie a pasta `public` de novo ao Netlify.
 
 ---
 
@@ -101,5 +101,5 @@ Exige criar uma credencial no Google Cloud. Se quiser, me chame e eu te guio. De
 | "Sem permissão para essa ação" ao publicar | Mesmo motivo acima |
 | "Confirme seu e-mail antes de entrar" | O "Confirm email" ainda está ligado (Parte 1, passo 2) |
 | "O envio de e-mails ainda não está configurado" | Normal sem SMTP próprio. Veja a parte opcional acima |
-| O site abre, mas não entra ninguém | Confira a Project URL e a chave em `config.js`, e envie a pasta `public` de novo |
+| O site abre, mas não entra ninguém | Confira a Project URL e a chave no topo do `index.html` (ou use o link **Diagnóstico** na tela de login), e envie a pasta `public` de novo |
 | O microfone não funciona | Use Chrome ou Edge e permita o microfone no cadeado da barra de endereço |
